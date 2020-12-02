@@ -142,6 +142,14 @@ export const GooglePlacesAutocomplete = forwardRef((props, ref) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  useEffect(() => {
+    setListViewDisplayed(
+      props.listViewDisplayed === 'auto'
+        ? !!inputRef?.current?.isFocused()
+        : props.listViewDisplayed,
+    );
+  }, [setListViewDisplayed, props.listViewDisplayed]);
+
   useImperativeHandle(ref, () => ({
     setAddressText: (address) => {
       setStateText(address);
